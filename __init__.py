@@ -24,6 +24,6 @@ def as_yaml(self):
     "Returns this form rendered as HTML <div>s."
     _search = r'<div class="row"><strong class="ym-message">(.*?)</strong>(.+?)type="(.+?)"(.+?)</div>'
     _output = u'<div class="row"><strong class="ym-message">%(errors)s</strong>%(label)s%(field)s%(help_text)s</div>'
-    return mark_safe(re.sub(_search, replace, self._html_output(_output, u'%s', '</div>', u'<small class="ym-message">%s</small>', False)))
+    return mark_safe(re.sub(_search, replace, self._html_output(_output, u'%s', '</div>', u'<small>%s</small>', False)))
 
 forms.ModelForm.as_yaml = as_yaml
