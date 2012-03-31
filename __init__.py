@@ -22,6 +22,6 @@ def replace(match):
 
 def as_yaml(self):
     "Returns this form rendered as HTML <div>s."
-    return mark_safe(re.sub(r'<div class="row"><strong class="message">(.*?)</strong>(.+?)type="(.+?)"(.+?)</div>', replace, self._html_output(u'<div class="row"><strong class="message">%(errors)s</strong>%(label)s%(field)s%(help_text)s</div>', u'%s', '</div>', u'<em class="hint">%s</em>', False)))
+    return mark_safe(re.sub(r'<div class="row"><p class="ym-message">(.*?)</p>(.+?)type="(.+?)"(.+?)</div>', replace, self._html_output(u'<div class="row"><p class="ym-message">%(errors)s</p>%(label)s%(field)s%(help_text)s</div>', u'%s', '</div>', u'<small class="ym-message">%s</small>', False)))
 
 forms.ModelForm.as_yaml = as_yaml
