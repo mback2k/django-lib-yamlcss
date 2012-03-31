@@ -57,11 +57,9 @@
       <div class="ym-wbox">
       {% block content-header %}
         {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
-            {% endfor %}
-        </ul>
+          {% for message in messages %}
+          <div class="box {% if message.tags %} {{ message.tags }}{% endif %}">{{ message|safe }}</div>
+          {% endfor %}
         {% endif %}
       {% endblock %}
       {% block content %}{% endblock %}
