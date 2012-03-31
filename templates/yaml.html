@@ -1,78 +1,84 @@
 <!DOCTYPE html>
 <html lang="{% firstof LANGUAGE_CODE 'en' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
+  <meta charset="utf-8" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>{% block title %}{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% block css %}
-  <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ STATIC_URL }}core/base.css" />
-  <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ STATIC_URL }}screen/forms.css" />
-  <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ STATIC_URL }}add-ons/microformats/microformats.css" />
+  <link rel="stylesheet" type="text/css" media="all" href="{{ STATIC_URL }}core/base.min.css" />
+  <link rel="stylesheet" type="text/css" media="all" href="{{ STATIC_URL }}add-ons/microformats/microformats.css" />
   {% if LANGUAGE_BIDI %}
-  <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ STATIC_URL }}add-ons/rtl-support/core/base-rtl.css" />
+  <link rel="stylesheet" type="text/css" media="all" href="{{ STATIC_URL }}add-ons/rtl-support/core/base-rtl.min.css" />
   {% endif %}
-  <!--[if IE]>
-  <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ STATIC_URL }}core/iehacks.css" />
-  <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ STATIC_URL }}patches/patch_nav_vlist.css" />
-  {% if LANGUAGE_BIDI %}
-  <link rel="stylesheet" type="text/css" media="screen, projection" href="{{ STATIC_URL }}add-ons/rtl-support/core/iehacks-rtl.css" />
-  {% endif %}
+  <!--[if lte IE 7]>
+  <link rel="stylesheet" type="text/css" media="all" href="{{ STATIC_URL }}core/iehacks.min.css" />
   <![endif]-->
+  <link rel="stylesheet" type="text/css" media="print" href="{{ STATIC_URL }}print/print.css" />
   {% endblock %}
   {% block js %}{% endblock %}
   {% block extra-head %}{% endblock %}
 </head>
 <body>
+  <ul class="ym-skiplinks">
+    <li><a class="ym-skip" href="#nav">Skip to navigation (Press Enter)</a></li>
+    <li><a class="ym-skip" href="#main">Skip to main content (Press Enter)</a></li>
+  </ul>
   {% block extra-top %}{% endblock %}
-  <div id="page_margins">
-    <div id="border-top">
-      <div id="edge-tl"></div>
-      <div id="edge-tr"></div>
-    </div>
-    <div id="page">
-      <div id="header">
-        <div id="topnav">
-          <a class="skip" href="#navigation" title="skip link">Skip to navigation</a><span class="hideme">.</span>
-          <a class="skip" href="#content" title="skip link">Skip to content</a><span class="hideme">.</span>
-          {% block extra-login %}
-          <span>
-          {% if user.is_authenticated %}
-            Welcome, {{ user.email }}! | 
-            <a href="{% url django.contrib.auth.views.logout %}" title="Logout">Logout</a>
-          {% else %}
-            Welcome Guest! | 
-            <a href="{% url django.contrib.auth.views.login %}" title="Login">Login</a>
-          {% endif %}
-          </span>
-          {% endblock %}
-        </div>
+  <header>
+    <div class="ym-wrapper">
+      <div class="ym-wbox">
         {% block header %}{% endblock %}
       </div>
-      <div id="nav">
-        <a id="navigation"></a>
-        {% block navigation %}{% endblock %}
-      </div>
-      <div id="main">
-        <a id="content"></a>
-        {% block content-header %}
-          {% if messages %}
-          <ul class="messages">
-              {% for message in messages %}
-              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
-              {% endfor %}
-          </ul>
-          {% endif %}
-        {% endblock %}
-        {% block content %}{% endblock %}
-      </div>
-      {% block footer %}
-      <div id="footer">Layout based on <a href="http://www.yaml.de/">YAML</a></div>
-      {% endblock %}
     </div>
-    <div id="border-bottom">
-      <div id="edge-bl"></div>
-      <div id="edge-br"></div>
+  </header>
+  <nav id="nav">
+    <div class="ym-wrapper">
+      <div class="ym-hlist">
+        <ul>
+          {% block navigation %}{% endblock %}
+        </ul>
+        <div class="ym-searchform">
+          {% block extra-login %}
+          {% if user.is_authenticated %}
+            <span class="ym-searchbutton">Welcome, {{ user.email }}!</span> 
+            <a class="ym-searchbutton" href="{% url django.contrib.auth.views.logout %}" title="Logout">Logout</a>
+          {% else %}
+            <span class="ym-searchbutton">Welcome Guest!</span> 
+            <a class="ym-searchbutton" href="{% url django.contrib.auth.views.login %}" title="Login">Login</a>
+          {% endif %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div id="main">
+    <div class="ym-wrapper">
+      <div class="ym-wbox">
+      {% block content-header %}
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+      {% endblock %}
+      {% block content %}{% endblock %}
+      </div>
     </div>
   </div>
+  <footer>
+    <div class="ym-wrapper">
+      <div class="ym-wbox">
+      {% block footer %}
+        Layout based on <a href="http://www.yaml.de">YAML</a>
+      {% endblock %}
+      </div>
+    </div>
+  </footer>
   {% block extra-bottom %}{% endblock %}
+  <!-- full skip link functionality in webkit browsers -->
+  <script src="{{ STATIC_URL }}core/js/yaml-focusfix.js"></script>
 </body>
 </html>
