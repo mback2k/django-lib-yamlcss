@@ -8,17 +8,17 @@ def replace(match):
     _errors = match.group(1)
     _type = match.group(3)
     if _type == 'checkbox' or _type == 'radio':
-        _class = 'check'
+        _class = 'ym-fbox-check'
     elif _type == 'submit' or _type == 'button' or _type == 'reset':
-        _class = 'button'
+        _class = 'ym-fbox-button'
     elif _content.find('<select') > -1:
-        _class = 'select'
+        _class = 'ym-fbox-select'
     else:
-        _class = 'text'
+        _class = 'ym-fbox-text'
     if _errors:
-        _class += ' error'
+        _class += ' ym-fbox-error'
         _content = _content.replace(_errors, strip_tags(_errors))
-    return _content.replace('class="row"', 'class="type-%s"' % _class)
+    return _content.replace('class="row"', 'class="%s"' % _class)
 
 def as_yaml(self):
     "Returns this form rendered as HTML <div>s."
