@@ -1,3 +1,4 @@
+{% load url from future %}
 <!DOCTYPE html>
 <html lang="{% firstof LANGUAGE_CODE 'en' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
@@ -44,10 +45,10 @@
           {% block extra-login %}
           {% if user.is_authenticated %}
             <span class="ym-searchbutton">Welcome, {{ user.email }}!</span> 
-            <a class="ym-searchbutton" href="{% url django.contrib.auth.views.logout %}" title="Logout">Logout</a>
+            <a class="ym-searchbutton" href="{% url 'django.contrib.auth.views.logout' %}" title="Logout">Logout</a>
           {% else %}
             <span class="ym-searchbutton">Welcome Guest!</span> 
-            <a class="ym-searchbutton" href="{% url django.contrib.auth.views.login %}" title="Login">Login</a>
+            <a class="ym-searchbutton" href="{% url 'django.contrib.auth.views.login' %}" title="Login">Login</a>
           {% endif %}
           {% endblock %}
         </div>
