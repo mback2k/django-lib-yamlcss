@@ -16,11 +16,9 @@
   <![endif]-->
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}print/print.css" />
   {% endblock %}
-  {% block js %}
   <!--[if lt IE 9]>
   <script type="text/javascript" src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  {% endblock %}
   {% block extra-head %}{% endblock %}
 </head>
 <body>
@@ -80,5 +78,8 @@
     </div>
   </footer>
   {% block extra-bottom %}{% endblock %}
+  {% block js %}
+  <script type="text/javascript" src="{{ STATIC_URL }}core/js/yaml-focusfix.js"></script>
+  {% endblock %}
 </body>
 </html>
