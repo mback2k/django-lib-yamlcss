@@ -22,6 +22,7 @@
   {% block extra-head %}{% endblock %}
 </head>
 <body>
+{% spaceless %}
   <ul class="ym-skiplinks">
     <li><a class="ym-skip" href="#nav">Skip to navigation (Press Enter)</a></li>
     <li><a class="ym-skip" href="#main">Skip to main content (Press Enter)</a></li>
@@ -81,5 +82,6 @@
   {% block js %}
   <script type="text/javascript" src="{{ STATIC_URL }}core/js/yaml-focusfix.js"></script>
   {% endblock %}
+{% endspaceless %}
 </body>
 </html>
