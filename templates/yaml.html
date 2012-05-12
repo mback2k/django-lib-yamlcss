@@ -1,6 +1,7 @@
 <!DOCTYPE html>{% load url from future %}
 <html lang="{% firstof LANGUAGE_CODE 'en' %}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
+{% spaceless %}
   <meta charset="utf-8" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>{% block title %}{% endblock %}</title>
@@ -20,6 +21,7 @@
   <script type="text/javascript" src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   {% block extra-head %}{% endblock %}
+{% endspaceless %}
 </head>
 <body>
 {% spaceless %}
