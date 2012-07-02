@@ -46,11 +46,11 @@
         <div class="ym-searchform">
           {% block extra-login %}
           {% if user.is_authenticated %}
-            <span class="ym-searchbutton">Welcome, {{ user.email }}!</span> 
-            <a class="ym-searchbutton" href="{% url 'django.contrib.auth.views.logout' %}" title="Logout">Logout</a>
+            <span class="ym-searchbutton">Welcome, {{ user.email }}!</span>&nbsp;
+            <a class="ym-searchbutton" href="{% yamlcss_settings_value 'LOGOUT_URL' %}" title="Logout">Logout</a>
           {% else %}
-            <span class="ym-searchbutton">Welcome Guest!</span> 
-            <a class="ym-searchbutton" href="{% url 'django.contrib.auth.views.login' %}" title="Login">Login</a>
+            <span class="ym-searchbutton">Welcome Guest!</span>&nbsp;
+            <a class="ym-searchbutton" href="{% yamlcss_settings_value 'LOGIN_URL' %}" title="Login">Login</a>
           {% endif %}
           {% endblock %}
         </div>
