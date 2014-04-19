@@ -5,13 +5,13 @@
 {% endfor %}
 
 {% if form.non_field_errors %}
-  <div class="ym-fbox-text ym-error">
+  <div class="ym-fbox ym-fbox-text ym-error">
     {% for error in form.non_field_errors %}<strong class="ym-message">{% for error in form.non_field_errors %}{{ error|escape }}<br />{% endfor %}</strong>{% endfor %}
   </div>
 {% endif %}
 
 {% for field in form.visible_fields %}
-  <div class="ym-fbox-{{ field|yamlform_field_type }}{% if form.non_field_errors or field.errors %} ym-error{% endif %}">
+  <div class="ym-fbox ym-fbox-{{ field|yamlform_field_type }}{% if form.non_field_errors or field.errors %} ym-error{% endif %}">
     {% if field.errors %}<strong class="ym-message">{% for error in field.errors %}{{ error|escape }}<br />{% endfor %}</strong>{% endif %}
     <label for="{{ field|yamlform_field_id }}">{{ field.label|escape }}{% if field.field.required %} <sup class="ym-required" title="This field is mandatory.">*</sup>{% endif %}</label>
     {{ field }}
