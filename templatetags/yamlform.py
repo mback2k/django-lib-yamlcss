@@ -16,9 +16,7 @@ def yamlform_field_type(field):
         widget = field.widget
     if isinstance(widget, widgets.Select):
         return 'select'
-    elif isinstance(widget, widgets.CheckboxInput):
-        return 'check'
-    elif isinstance(widget, widgets.RadioInput):
+    elif isinstance(widget, widgets.ChoiceInput):
         return 'check'
     return 'text'
 
