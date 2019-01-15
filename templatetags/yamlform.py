@@ -14,10 +14,10 @@ def yamlform_field_type(field):
         widget = field.field.widget
     except AttributeError:
         widget = field.widget
-    if isinstance(widget, widgets.Select):
-        return 'select'
-    elif isinstance(widget, widgets.ChoiceInput):
+    if isinstance(widget, widgets.ChoiceWidget):
         return 'check'
+    elif isinstance(widget, widgets.Select):
+        return 'select'
     return 'text'
 
 @register.filter
